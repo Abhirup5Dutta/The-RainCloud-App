@@ -29,6 +29,7 @@ function App() {
   const [query, setQuery] = useState('');
   const [coords, setCoords] = useState(true);
   const [finalSearch, setFinalSearcch] = useState('');
+  const [prevState, setPrevState] = useState('');
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -71,11 +72,16 @@ function App() {
         const data = await api.json();
 
         if (data.message !== 'city not found') {
+          setPrevState(finalSearch);
           shortArray(data);
           setQuery('');
           setError(false);
         } else {
           alert('No result found for your search!');
+          if (prevState !== '')
+            setFinalSearcch(prevState);
+          else
+            setCoords(true);
         }
 
       };
@@ -84,7 +90,7 @@ function App() {
 
     }
 
-  }, [celcius, coords, finalSearch]);
+  }, [celcius, coords, finalSearch, prevState]);
 
   const shortArray = (dataFull) => {
     var weatherDateWise = [];

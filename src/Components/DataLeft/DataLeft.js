@@ -44,7 +44,7 @@ function DataLeft({ iconCode, temp, dateFinal, dateFinalDay, wind, humidity, rai
                 <span className="dataLeft__TempInfo__Each">
                     <i className="fas fa-wind"></i>
                     &nbsp;&nbsp;&nbsp;
-                    Wind &nbsp; {wind}km/hr
+                    Wind &nbsp; {wind}{isToggled ? 'miles/hour' : 'meter/sec'}
                 </span>
                 <span className="dataLeft__TempInfo__Each">
                     <i className="fas fa-tint"></i>

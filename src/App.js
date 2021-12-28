@@ -49,6 +49,8 @@ function App() {
 
           const dataCoords = await apiCoords.json();
 
+          setError(false);
+
           shortArray(dataCoords);
         };
 

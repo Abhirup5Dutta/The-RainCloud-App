@@ -141,3 +141,9 @@
   flex-direction: column;
   justify-content: flex-end;
 }
+
+.dataRight__ArrowError {
+  height: 95%;
+  object-fit: contain;
+  margin-top: 0.5rem;
+}

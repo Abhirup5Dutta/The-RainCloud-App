@@ -4,6 +4,7 @@ import DataLeft from "./Components/DataLeft/DataLeft";
 import { countries } from 'country-data';
 import DataRight from "./Components/DataRight/DataRight";
 import BottomPart from "./Components/BottomPart/BottomPart";
+import ErrorMain from './Assets/screen.png';
 
 function App() {
   const [iconCode, setIconCode] = useState('');
@@ -30,6 +31,7 @@ function App() {
   const [coords, setCoords] = useState(true);
   const [finalSearch, setFinalSearcch] = useState('');
   const [prevState, setPrevState] = useState('');
+  const [prevCoords, setPrevCoords] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -76,9 +78,10 @@ function App() {
           shortArray(data);
           setQuery('');
           setError(false);
+          setPrevCoords(false);
         } else {
           alert('No result found for your search!');
-          if (prevState !== '')
+          if (prevState !== '' && prevCoords === false)
             setFinalSearcch(prevState);
           else
             setCoords(true);
@@ -90,7 +93,7 @@ function App() {
 
     }
 
-  }, [celcius, coords, finalSearch, prevState]);
+  }, [celcius, coords, finalSearch, prevState, prevCoords]);
 
   const shortArray = (dataFull) => {
     var weatherDateWise = [];
@@ -181,11 +184,11 @@ function App() {
     <div className="app__Top">
       {
         error ?
-          "Location Permission Not granted" :
+          <img src={ErrorMain} alt="error page" className="app__Top__Error" /> :
           <DataLeft iconCode={iconCode} temp={temp} dateFinal={dateFinal} dateFinalDay={dateFinalDay} wind={wind} humidity={humidity} rain={rain} forecast={forecast} isToggled={isToggled} onToggle={() => setIsToggled(!isToggled)} />
       }
 
-      <DataRight city={city} country={country} sunrise={sunrise} sunset={sunset} sunriseTimeState={sunriseTimeState} sunsetTimeState={sunsetTimeState} maxtemp={maxtemp} mintemp={mintemp} desc={desc} feelsLike={feelsLike} isToggled={isToggled} setQuery={setQuery} query={query} setCoords={setCoords} setFinalSearch={setFinalSearcch} error={error} />
+      <DataRight city={city} country={country} sunrise={sunrise} sunset={sunset} sunriseTimeState={sunriseTimeState} sunsetTimeState={sunsetTimeState} maxtemp={maxtemp} mintemp={mintemp} desc={desc} feelsLike={feelsLike} isToggled={isToggled} setQuery={setQuery} query={query} setCoords={setCoords} setFinalSearch={setFinalSearcch} error={error} setPrevCoords={setPrevCoords} />
     </div>
 
     <BottomPart />

@@ -2,8 +2,9 @@ import React from 'react'
 import './DataRight.css';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
+import Arrow from '../../Assets/arrow.png';
 
-function DataRight({ city, country, sunrise, sunset, sunriseTimeState, sunsetTimeState, maxtemp, mintemp, desc, feelsLike, isToggled, setQuery, query, setCoords, setFinalSearch, error }) {
+function DataRight({ city, country, sunrise, sunset, sunriseTimeState, sunsetTimeState, maxtemp, mintemp, desc, feelsLike, isToggled, setQuery, query, setCoords, setFinalSearch, error, setPrevCoords }) {
 
     const handleChange = (e) => {
         setQuery(e.target.value);
@@ -37,14 +38,18 @@ function DataRight({ city, country, sunrise, sunset, sunriseTimeState, sunsetTim
 
         setQuery('');
         setCoords(true);
+        setPrevCoords(true);
     }
 
     return (
         <div className='dataRight'>
             <span className='dataRight__CityCountry'>
-                <button className='dataRight__Search__Location' onClick={searchWeatherCoords}>
-                    <i className="fas fa-map-marker-alt" style={{ color: 'white', fontSize: '1.5rem' }}></i>
-                </button>
+                {
+                    !error &&
+                    <button className='dataRight__Search__Location' onClick={searchWeatherCoords}>
+                        <i className="fas fa-map-marker-alt" style={{ color: 'white', fontSize: '1.5rem' }}></i>
+                    </button>
+                }
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 {
                     !error &&
@@ -57,6 +62,11 @@ function DataRight({ city, country, sunrise, sunset, sunriseTimeState, sunsetTim
                     <i className="fas fa-search" style={{ color: 'white', fontSize: '1.2rem' }} ></i>
                 </button>
             </form>
+
+            {
+                error &&
+                <img src={Arrow} alt="arrow card" className='dataRight__ArrowError' />
+            }
 
             {
                 !error &&

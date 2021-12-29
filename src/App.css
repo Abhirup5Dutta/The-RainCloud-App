@@ -13,3 +13,8 @@
   display: flex;
   width: 100%;
 }
+
+.app__Top__Error {
+  width: 75%;
+  object-fit: fill;
+}

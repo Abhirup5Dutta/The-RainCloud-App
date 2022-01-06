@@ -7,6 +7,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .app__Top {

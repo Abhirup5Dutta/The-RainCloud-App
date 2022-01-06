@@ -155,18 +155,26 @@ function App() {
     setCountry(countries[dataFull.city.country].name);
 
     var sunriseTime = new Date(null);
-    sunriseTime.setSeconds(dataFull.city.sunrise + dataFull.city.timezone);
+    sunriseTime.setUTCSeconds(dataFull.city.sunrise + dataFull.city.timezone);
     var sunriseResult = sunriseTime.toISOString().substring(11, 16);
 
-    setSunrise(new Date(dataFull.city.sunrise * 1000));
+    // setSunrise(new Date(dataFull.city.sunrise * 1000));
 
-    setSunset(new Date(dataFull.city.sunset * 1000));
+    setSunrise(sunriseResult);
+
+    // setSunrise(sunriseTime.toISOString());
+
+    // setSunset(new Date(dataFull.city.sunset * 1000));
 
     setSunriseTimeState(sunriseResult + ' AM');
 
     var sunsetTime = new Date(null);
     sunsetTime.setSeconds(dataFull.city.sunset + dataFull.city.timezone - 43200);
     var sunsetResult = sunsetTime.toISOString().substring(11, 16);
+
+    // setSunset(sunsetTime.toISOString());
+
+    setSunset(sunsetResult);
 
     setSunsetTimeState(sunsetResult + ' PM');
 

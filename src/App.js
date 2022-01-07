@@ -160,7 +160,7 @@ function App() {
 
     // setSunrise(new Date(dataFull.city.sunrise * 1000));
 
-    setSunrise(sunriseResult);
+    setSunrise(sunriseTime.toISOString().substring(11, 19));
 
     // setSunrise(sunriseTime.toISOString());
 
@@ -174,7 +174,7 @@ function App() {
 
     // setSunset(sunsetTime.toISOString());
 
-    setSunset(sunsetResult);
+    setSunset(sunsetTime.toISOString().substring(11, 19));
 
     setSunsetTimeState(sunsetResult + ' PM');
 
